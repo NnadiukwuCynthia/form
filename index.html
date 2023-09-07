@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    <style>
+        .divContainer{
+            width: 30%;
+            height: 200px;
+            margin: 6em auto 0;
+            padding: 20px;
+            box-shadow: 1px 1px 7px grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .inputContainer{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto;
+        }
+        .inputContainer input{
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .inputContainer input:focus{
+            outline: none;
+        }
+        .inputContainer label{
+            font-weight: 500;
+            padding-top: 5px;
+            text-transform: uppercase;
+            font-family: cursive;
+        }
+        .btnContainer{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .btnContainer button{
+            width: 50%; 
+            height: 40px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            background-color: gray;
+            border-radius: 10px;
+            border: unset;
+               
+        }
+        .btnContainer button:hover{
+            background-color: #ebcccc;
+            color: gray;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <main class="divContainer">
+        <div class="inputContainer">
+            <input type="text" class="firstName" name="firstName" required>
+        <label for="firstName">FirstName</label>
+        </div>
+        <div class="inputContainer">
+            <input type="text" class="lastName" name="lastName" required>
+        <label for="lastName">LastName</label>
+        </div>
+        <div class="btnContainer">
+            <button type="submit" class="btn">register</button>
+        </div>
+    </main>
+
+    <script>
+        const firstName = document.querySelector('.firstName');
+        const lastName = document.querySelector('.lastName');
+        const Btn = document.querySelector('.btn');
+        
+        Btn.addEventListener('click', (e) => {
+            alert(firstName.value + ' ' + lastName.value);
+            alert('Registration Complete')
+        })
+    </script>
+</body>
+</html>
