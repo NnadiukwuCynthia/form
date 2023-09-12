@@ -77,6 +77,34 @@ const Register = () => {
             Must begin with a letter. <br />
             Letters, numbers, underscores and hyphens are allowed.
         </p>
+
+        <label htmlFor="password">
+            Password:
+            <span className={validPassword ? 'valid' : 'hide'}>
+                <FaCheck/>
+            </span>
+            <span className={validPassword || !password ? "hide" : 'invalid'}>
+                <FaTimes/>
+            </span>
+        </label>
+        <input 
+        type='password'
+        id='password'
+        onChange={e => setPassword(e.target.value)}
+        required
+        aria-invalid={validPassword ? 'false' : 'true'}
+        aria-describedby='pwdnote'
+        onFocus={() => setPasswordFocus(true)}
+        onBlur={() => setPasswordFocus(false)}
+        />
+        <p id='pwdnote' className={passwordFocus && !validPassword ? 'instructions' : 'offscreen'}>
+            <FaInfoCircle/>
+            Password must be between 8 to 24 characters <br />
+            Must contain at least one lowercase letter <br />
+            Must contain at least one uppercase letter <br />
+            Must contain at least one number <br />
+            Must contain at least one special character
+        </p>
     </form>
     </>
   )
