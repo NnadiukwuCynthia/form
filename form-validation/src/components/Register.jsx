@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from 'react';
 import {FaCheck, FaInfoCircle, FaTimes} from 'react-icons/fa'
 
-const USER_REGEX= /^[a-zA-z][a-zA-z0-9-_]{4-20}$/;
+const USER_REGEX= /^[a-zA-z][a-zA-z0-9-_]{4,20}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
@@ -31,37 +31,40 @@ const Register = () => {
         const result = USER_REGEX.test(userName);
         console.log(result);
         console.log(userName);
-        setValidName(userName);
-    }, [userName]);
+        setValidName(result);
+    }, [userName])
 
-    useEffect(()=>{
+    useEffect(()=>{ 
         const result = PWD_REGEX.test(password)
         console.log(result);
         console.log(password);
         setValidPassword(result);
         const match = password === matchPassword;
         setValidMatch(match);
-    }, [password, matchPassword]);
+    }, [password, matchPassword])
 
     useEffect(() => {
         setErrMsg('');
-    }, [userName, password, matchPassword]);
+    }, [userName, password, matchPassword])
 
   return (
     <>
-    <p ref={errorRef} className={errMsg ? 'errMsg' : "offscreen"} aria-live='assertive'>{errMsg}</p>
+    <p ref={errorRef} className={errMsg ? 'errmsg' : "offscreen"} aria-live='assertive'>{errMsg}</p>
     <h1>Register</h1>
     <form>
         <label htmlFor="username">Username:
-        <span  className={validName ? "valid" : "hide"}> <FaCheck/></span>
-        <span className= {validName || !userName ? "hide" : "valid"}><FaTimes/></span>
+        <span  className={validName ? "valid" : "hide"}> <FaCheck/>
+        </span>
+        <span className={validName || !userName ? "hide" : "invalid"}>
+            <FaTimes/>
+            </span>
         </label>
         <input 
         type="text"
-        id='username'
+        id='username' 
         ref={userRef}
         autoComplete='off'
-        onChange={e => setUserName(e.target.value)}
+        onChange={(e) => setUserName(e.target.value)}
         required
         aria-invalid={validName ? 'false' : 'true'}
         aria-describedby='uidnote'
