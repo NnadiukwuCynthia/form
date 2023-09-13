@@ -1,5 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 import {FaCheck, FaInfoCircle, FaTimes} from 'react-icons/fa'
+import App from './../App';
 
 const USER_REGEX= /^[a-zA-z][a-zA-z0-9-_]{4,20}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -129,7 +130,14 @@ const Register = () => {
             <FaInfoCircle/>
             Passwords must match
         </p>
+        < button disabled={!validName || !validPassword || !validMatch ? true : false}> Sign Up </button>
     </form>
+    <p>
+        Already have an account? <br />
+        <span className='line'>
+        <a href='/login'>Sign In</a>
+        </span>
+    </p>
     </>
   )
 }
