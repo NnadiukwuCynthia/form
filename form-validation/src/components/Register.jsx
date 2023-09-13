@@ -105,6 +105,30 @@ const Register = () => {
             Must contain at least one number <br />
             Must contain at least one special character
         </p>
+
+        <label htmlFor="confirm_password">
+           Confirm Password:
+            <span className={validMatch && matchPassword ? 'valid' : 'hide'}>
+                <FaCheck/>
+            </span>
+            <span className={validMatch || !matchPassword ? "hide" : 'invalid'}>
+                <FaTimes/>
+            </span>
+        </label>
+        <input 
+        type='password'
+        id='confirm_password'
+        onChange={e => setMatchPassword(e.target.value)}
+        required
+        aria-invalid = {validMatch ? 'false' : 'true'}
+        aria-describedby='confirmnote'
+         onFocus={() => setMatchFocus(true)}
+         onBlur={() => setMatchFocus(false)}
+        />
+        <p id='confirmnote' className={matchFocus && !validMatch? 'instructions' : 'offscreen'}>
+            <FaInfoCircle/>
+            Passwords must match
+        </p>
     </form>
     </>
   )
