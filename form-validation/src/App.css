@@ -14,7 +14,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: dodgerblue;
+    background-color: rgb(2, 16, 31);
 }
 
 .App {
@@ -34,7 +34,8 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    background-color: rgba(75, 76, 80, 0.4);
 }
 
 form {

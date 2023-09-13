@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 import {FaCheck, FaInfoCircle, FaTimes} from 'react-icons/fa'
-import App from './../App';
+
 
 const USER_REGEX= /^[a-zA-z][a-zA-z0-9-_]{4,20}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -48,11 +48,31 @@ const Register = () => {
         setErrMsg('');
     }, [userName, password, matchPassword])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const validate1 = USER_REGEX.test(userName)
+        const validate2 = PWD_REGEX.test(password);
+        if (!validate1 || !validate2) {
+            setErrMsg('Invalid Entry');
+            return;
+        }
+        console.log(userName, password);
+        setSuccessMsg(true);
+    }
   return (
     <>
+    {successMsg ? (
+        <section>
+            <h1>Success!!!</h1>
+            <p>
+                <a href="/login">Sign In</a>
+            </p>
+        </section>
+    ) : (
+        <section>
     <p ref={errorRef} className={errMsg ? 'errmsg' : "offscreen"} aria-live='assertive'>{errMsg}</p>
     <h1>Register</h1>
-    <form>
+    <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:
         <span  className={validName ? "valid" : "hide"}> <FaCheck/>
         </span>
@@ -138,6 +158,10 @@ const Register = () => {
         <a href='/login'>Sign In</a>
         </span>
     </p>
+    </section>
+    )
+    }
+    
     </>
   )
 }

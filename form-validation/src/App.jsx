@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <main>
+      <main className='App'>
       <Register />    
       </main>
     </>
